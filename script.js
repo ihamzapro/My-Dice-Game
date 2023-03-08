@@ -11,13 +11,24 @@ const btnHold = document.querySelector(".btn--hold");
 
 //starting conditions
 
-score0E1.textContent = 0;
-score1E1.textContent = 0;
-diceE1.classList.add("hidden");
-const score = [0, 0];
-let currentScore = 0;
-let activePlayer = 0;
-let playing = true;
+let score, currentScore, activePlayer, playing;
+
+const init = function () {
+  diceE1.classList.add("hidden");
+  score = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  playing = true;
+  score0E1.textContent = 0;
+  score1E1.textContent = 0;
+  current0E1.textContent = 0;
+  current1E1.textContent = 0;
+  player0E1.classList.remove("player--winner");
+  player1E1.classList.remove("player--winner");
+  player0E1.classList.add("player--active");
+  player1E1.classList.remove("player--active");
+};
+init();
 
 const switchPlayer = function () {
   document.getElementById(`current--${activePlayer}`).textContent = 0;
@@ -73,3 +84,7 @@ btnHold.addEventListener("click", function () {
     }
   }
 });
+
+//Reload the game
+
+btnNew.addEventListener("click", init);
